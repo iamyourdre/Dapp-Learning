@@ -1,10 +1,11 @@
 import React from 'react'
 import ConnectWallet from './ConnectWallet'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
     <>
-      <div className="navbar bg-base-100 absolute shadow-md lg:px-24">
+      <div className="navbar bg-base-100 absolute shadow-sm lg:px-24">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -31,7 +32,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center">
-          <span className="text-xl"><span className='font-bold'>DAPP</span>LEARNING</span>
+          <Link to={'/'} className="text-xl"><span className='font-bold'>DAPP</span>LEARNING</Link>
         </div>
         <div className="navbar-end">
           <ConnectWallet />
