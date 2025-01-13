@@ -6,7 +6,7 @@ const BasicLayout = () => {
   return (
     <div className="flex relative ">
       <Navbar />
-      <div className="flex-auto pl-16 lg:px-[4.5rem] min-h-screen">
+      <div className="px-5 lg:px-20 min-h-screen">
         <Outlet />
       </div>
     </div>
