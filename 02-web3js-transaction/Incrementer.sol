@@ -1,9 +1,9 @@
 pragma solidity ^0.8.0;
 
-contract Incrementer {
+contract Incrementer2 {
     uint256 public number;
 
-    event Increment(uint256 value);
+    event Increment2(uint256 value);
     event Reset();
 
     constructor(uint256 _initialNumber) {
@@ -13,7 +13,7 @@ contract Incrementer {
     function increment(uint256 _value) public {
         require(_value > 0, "increment value should be positive number");
         number = number + _value;
-        emit Increment(_value);
+        emit Increment2(_value);
     }
 
     function reset() public {
