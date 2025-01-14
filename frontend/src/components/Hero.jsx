@@ -29,7 +29,7 @@ const Hero = () => {
             </span>
           </p>
           <p className='text-xl'>
-            A collection of tutorials and guides to help you get started with blockchain development. Documented by the community, for the community.
+            Relax, it's just a simple documentation since I'm learning DApp development. It might not be perfect, but it's a good start.
           </p>
           <div className="flex pt-4">
           <button className='btn btn-neutral btn-lg'>
