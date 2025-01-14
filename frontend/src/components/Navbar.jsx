@@ -3,6 +3,21 @@ import ConnectWallet from './ConnectWallet'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+  const navLinks = [
+    {
+      name: 'Homepage',
+      url: '/'
+    },
+    {
+      name: '1. Incrementer',
+      url: '/_01'
+    },
+    {
+      name: '2. Incrementer (Transaction)',
+      url: '/_02'
+    }
+
+  ]
   return (
     <>
       <div className="navbar bg-base-100 absolute shadow-sm px-5 lg:px-20 py-3 z-50">
