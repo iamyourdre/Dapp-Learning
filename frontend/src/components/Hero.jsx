@@ -29,7 +29,7 @@ const Hero = () => {
             </span>
           </p>
           <p className='text-xl'>
-            Relax, it's just a simple documentation since I'm learning DApp development. It might not be perfect, but it's a good start.
+            Relax, it's just my simple learning documentation about DApp development. It might not be perfect, but it's a good start.
           </p>
           <div className="flex pt-4">
           <button className='btn btn-neutral btn-lg'>
