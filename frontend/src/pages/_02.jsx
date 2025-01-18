@@ -3,8 +3,9 @@ import Web3 from 'web3';
 import useWallet from '../hooks/useWallet';
 import IncrementerABI from '../abi/_02/Incrementer2.json';
 import Loading from '../components/Loading';
+import { showToastPromise } from '../utils/toastUtils';
 
-const _01 = () => {
+const _02 = () => {
   const { wallet } = useWallet();
   const [number, setNumber] = useState(0);
   const [web3, setWeb3] = useState(null);
@@ -38,37 +39,36 @@ const _01 = () => {
         setNumber(value);
       }
     };
-
     fetchNumber();
   }, [contract]);
 
   const increment = async () => {
     if (contract && wallet) {
       setLoadingIncrement(true);
-      try {
-        await contract.methods.increment(1).send({ from: wallet });
+      const sendTx = contract.methods.increment(1).send({ from: wallet })
+      .then(async (result) => {
         const value = await contract.methods.getNumber().call();
         setNumber(value);
-      } catch (error) {
-        console.error("Error incrementing number", error);
-      } finally {
+        return result;
+      });
+      showToastPromise(sendTx).finally(() => {
         setLoadingIncrement(false);
-      }
+      });
     }
   };
 
   const reset = async () => {
     if (contract && wallet) {
       setLoadingReset(true);
-      try {
-        await contract.methods.reset().send({ from: wallet });
+      const sendTx = contract.methods.reset().send({ from: wallet })
+      .then(async (result) => {
         const value = await contract.methods.getNumber().call();
         setNumber(value);
-      } catch (error) {
-        console.error("Error resetting number", error);
-      } finally {
+        return result;
+      });
+      showToastPromise(sendTx).finally(() => {
         setLoadingReset(false);
-      }
+      });
     }
   };
 
@@ -88,4 +88,4 @@ const _01 = () => {
   );
 };
 
-export default _01;
+export default _02;
