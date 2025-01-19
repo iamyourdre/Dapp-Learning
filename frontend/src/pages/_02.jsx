@@ -4,6 +4,7 @@ import useWallet from '../hooks/useWallet';
 import IncrementerABI from '../abi/_02/Incrementer2.json';
 import Loading from '../components/Loading';
 import { showToastPromise } from '../utils/toastUtils';
+import ConnectWallet from '../components/ConnectWallet';
 
 const _02 = () => {
   const { wallet } = useWallet();
@@ -77,12 +78,17 @@ const _02 = () => {
       <h1 className='text-2xl font-medium'>Incrementer</h1>
       <p className='text-8xl'>{number.toString()}</p>
       <div className="flex gap-4">
-        <button onClick={reset} disabled={!wallet || loadingReset} className='btn btn-outline btn-neutral'>
-        {loadingReset ? <><Loading /> Reseting...</> : 'Reset'}
-        </button>
-        <button onClick={increment} disabled={!wallet || loadingIncrement} className='btn btn-neutral'>
-          {loadingIncrement ? <><Loading /> Incrementing...</> : 'Increment'}
-        </button>
+        {!wallet ?
+          <ConnectWallet /> : (
+          <>          
+            <button onClick={reset} disabled={loadingReset} className='btn btn-outline btn-neutral'>
+            {loadingReset ? <><Loading /> Reseting...</> : 'Reset'}
+            </button>
+            <button onClick={increment} disabled={loadingIncrement} className='btn btn-neutral'>
+              {loadingIncrement ? <><Loading /> Incrementing...</> : '+1'}
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
