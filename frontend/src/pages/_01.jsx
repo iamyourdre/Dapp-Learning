@@ -20,7 +20,7 @@ const _01 = () => {
 
         const contractInstance = new web3Instance.eth.Contract(
           IncrementerABI.abi,
-          '0xBfEC74f0c18B440370e41EC0F827bA0931821591'
+          '0xBfEC74f0c18B440370e41EC0F827bA0931821591' // (change to your own contract address)
         );
         setContract(contractInstance);
       } else {

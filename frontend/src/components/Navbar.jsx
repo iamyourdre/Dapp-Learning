@@ -13,8 +13,12 @@ const Navbar = () => {
       url: '/_01'
     },
     {
-      name: '2. Incrementer (Transaction)',
+      name: '2. Transaction',
       url: '/_02'
+    },
+    {
+      name: '3. ERC20 Token',
+      url: '/_03'
     }
 
   ]
