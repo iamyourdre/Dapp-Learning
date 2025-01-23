@@ -60,7 +60,7 @@ const _03 = () => {
 
         <input type="radio" name="my_tabs" role="tab" className="tab" aria-label="MINT" defaultChecked/>
         <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-          <Mint contract={contract} web3={web3} />
+          <Mint contract={contract} web3={web3} decimals={decimals} />
         </div>
 
         <input type="radio" name="my_tabs" role="tab" className="tab" aria-label="BURN" />
@@ -106,7 +106,7 @@ const _03 = () => {
   )
 }
 
-const Mint = ({ contract, web3 }) => {
+const Mint = ({ contract, web3, decimals }) => {
   const { wallet } = useWallet();
   const [amount, setAmount] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -114,16 +114,22 @@ const Mint = ({ contract, web3 }) => {
   const mint = async () => {
     if (contract && wallet) {
       setLoading(true);
-      console.log("wallet", wallet)
-      const sendTx = contract.methods.mint(wallet, amount).send({ from: wallet })
-      .then(async (result) => {
-        const value = await contract.methods.getNumber().call();
-        setNumber(value);
-        return result;
-      });
-      showToastPromise(sendTx).finally(() => {
-        setLoading(false);
-      });
+      const role = await contract.methods.hasRole('0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6', wallet).call();
+      console.log("role", role)
+      if (!role) {
+        await contract.methods.renounceRole('0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6', wallet).send({ from: wallet });
+        console.log("renounceRole")
+      }
+      // const amountWithDecimals = BigInt(amount) * BigInt(10 ** 18);
+      // const sendTx = contract.methods.mint(wallet, amountWithDecimals).send({ from: wallet })
+      // .then(async (result) => {
+      //   const value = await contract.methods.getNumber().call();
+      //   setNumber(value);
+      //   return result;
+      // });
+      // showToastPromise(sendTx).finally(() => {
+      //   setLoading(false);
+      // });
     }
   };
 
