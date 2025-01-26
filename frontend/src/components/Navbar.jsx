@@ -17,11 +17,6 @@ const Navbar = () => {
       name: '2. Transaction',
       url: '/_02'
     },
-    {
-      name: '3. ERC20 Token',
-      url: '/_03'
-    }
-
   ]
   return (
     <>

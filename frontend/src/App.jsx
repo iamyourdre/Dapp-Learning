@@ -16,7 +16,6 @@ function App() {
             <Route path='/' element={<Index />} />
             <Route path="/_01" element={<_01 />} />
             <Route path="/_02" element={<_02 />} />
-            <Route path="/_03" element={<_03 />} />
           </Route>
         </Routes>
       </Router>
