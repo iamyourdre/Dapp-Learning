@@ -11,6 +11,7 @@ const _02 = () => {
   const [number, setNumber] = useState(0);
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [loadingReset, setLoadingReset] = useState(false);
   const [loadingIncrement, setLoadingIncrement] = useState(false);
 
@@ -38,6 +39,7 @@ const _02 = () => {
       if (contract) {
         const value = await contract.methods.getNumber().call();
         setNumber(value);
+        setLoading(false);
       }
     };
     fetchNumber();
@@ -76,7 +78,7 @@ const _02 = () => {
   return (
     <div className='h-screen justify-center items-center flex flex-col gap-8'>
       <h1 className='text-2xl font-medium'>Incrementer</h1>
-      <p className='text-8xl'>{number.toString()}</p>
+      {loading ? <Loading /> : <p className='text-8xl'>{number.toString()}</p>}
       <div className="flex gap-4">
         {!wallet ?
           <ConnectWallet /> : (

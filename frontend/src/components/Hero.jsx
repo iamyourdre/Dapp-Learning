@@ -2,6 +2,7 @@ import React from 'react'
 import cube3d from '../assets/3d-glassy-cube-of-square-blocks.webm';
 import './Hero.css';
 import { FaGithub } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -31,9 +32,12 @@ const Hero = () => {
           <p className='text-xl'>
             Relax, it's just my simple learning documentation about DApp development. It might not be perfect, but it's a good start.
           </p>
-          <div className="flex pt-4">
+          <div className="flex pt-4 gap-4">
+          <Link to={'/_02'} className='btn text-white btn-lg bg-gradient-to-r from-purple-600 to-pink-400 to-90%'>
+            DAPP Example
+          </Link>
           <button className='btn btn-neutral btn-lg'>
-            <FaGithub /> View on GitHub
+            <FaGithub />
           </button>
           </div>
         </div>
